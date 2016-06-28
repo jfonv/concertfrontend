@@ -1,3 +1,9 @@
 import React from 'react';
+import Concert from './Concert';
 
-export default () => <h1>hello world</h1>;
+export default () => (
+  <div>
+    <h1>hello world</h1>
+    <Concert />
+  </div>
+);
