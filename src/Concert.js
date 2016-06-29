@@ -23,8 +23,11 @@ class Concert extends React.Component {
     }).then((response) => {
       response.text().then((responseText) => {
         const sections = JSON.parse(responseText);
+        for (let i = 0; i < sections.length; i++) {
+          sections[i].moneyMade = sections[i].seats.reduce((a, v) => a + (v.purchased ? 1 : 0), 0);
+          sections[i].moneyMade *= sections[i].price;
+        }
         this.setState({ sections, changeme: true });
-
       })
     }, (error) => {
       console.log(error.message); // => String
@@ -32,6 +35,7 @@ class Concert extends React.Component {
   }
 
   updatePage() {
+    this.populate();
     this.setState({ sections: this.state.sections, changeme: false });
   }
 
@@ -49,7 +53,7 @@ class Concert extends React.Component {
       <div>
         <Selector update={this.updatePage} />
         <h2>Sections </h2>
-          { this.state.sections.map((v,i) => <Section key={i} sectionData={v}/> ) }
+          { this.state.sections.map((v,i) => <Section key={i} update={this.updatePage} sectionData={v}/> ) }
       </div>
     );
   }

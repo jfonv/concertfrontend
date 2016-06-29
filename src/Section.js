@@ -7,7 +7,7 @@ class Section extends React.Component {
 
   }
 
-  render(){
+  render() {
     return (
       <table style={{width: '400px'}}>
           <thead>
@@ -25,7 +25,9 @@ class Section extends React.Component {
               <td>
                 Price: ${this.props.sectionData.price}
               </td>
-              <td></td>
+              <td>
+                Money Made: ${this.props.sectionData.moneyMade}
+              </td>
               <td> </td>
               <td> </td>
               <td> </td>
@@ -34,7 +36,7 @@ class Section extends React.Component {
             </tr>
             <tr>
               <td>
-              { this.props.sectionData.seats.map((v,i) => <Seat key={i*i} seat={v} /> ) }
+              { this.props.sectionData.seats.map((v,i) => <Seat key={i*i} update={this.props.update} seat={v} /> ) }
               </td>
             </tr>
             </tbody>

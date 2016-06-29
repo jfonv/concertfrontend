@@ -30,6 +30,7 @@ class Seat extends React.Component {
     }, function(error) {
       error.message //=> String
     });
+    this.props.update();
   }
 
   render(){
